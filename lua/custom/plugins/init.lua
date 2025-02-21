@@ -46,4 +46,12 @@ return {
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
   },
+  -- Lazygit
+  {
+    'kdheepak/lazygit.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    keys = { { '<leader>gg', '<cmd>LazyGit<CR>', desc = 'Toggle LazyGit' } },
+  },
 }
