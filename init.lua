@@ -420,6 +420,9 @@ require('lazy').setup({
 
       -- Allows extra capabilities provided by nvim-cmp
       'hrsh7th/cmp-nvim-lsp',
+
+      -- Helper plugin for csharp
+      'Hoffs/omnisharp-extended-lsp.nvim',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -604,7 +607,7 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -612,8 +615,20 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
-
+        omnisharp = {
+          on_attach = on_attach,
+          handlers = {
+            ['textDocument/definition'] = require('omnisharp_extended').definition_handler,
+            ['textDocument/typeDefinition'] = require('omnisharp_extended').type_definition_handler,
+            ['textDocument/references'] = require('omnisharp_extended').references_handler,
+            ['textDocument/implementation'] = require('omnisharp_extended').implementation_handler,
+          },
+          capabilities = capabilities,
+          enable_roslyn_analysers = true,
+          enable_import_completion = true,
+          organize_imports_on_format = true,
+          enable_decompilation_support = true,
+        },
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
