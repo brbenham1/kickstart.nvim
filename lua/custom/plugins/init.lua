@@ -86,4 +86,13 @@ return {
       vim.g.vimtex_complete_enabled = 1 -- Enable completion
     end,
   },
+
+  -- Kanagawa Color Scheme
+  {
+    'rebelot/kanagawa.nvim',
+    init = function()
+      vim.cmd.colorscheme 'kanagawa-wave'
+      vim.opt.termguicolors = true
+    end,
+  },
 }
